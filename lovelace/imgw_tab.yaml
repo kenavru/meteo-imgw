@@ -1,0 +1,24 @@
+# Lovelace tab for the IMGW nowcasting videos.
+# Requires www/imgw_video.html copied into Home Assistant's config/www folder
+# (then it is served at /local/imgw_video.html).
+#
+# Use as a whole view ("tab") in a YAML-managed dashboard
+# (lovelace: mode: yaml / storage resources), or copy the card into any
+# masonry/sections view via the UI:  Add card -> Manual -> Show code editor.
+
+views:
+  - title: IMGW
+    path: imgw
+    icon: mdi:weather-rainy
+    panel: true            # full-page tab; aspect_ratio is then ignored
+    cards:
+      - type: iframe
+        url: /local/imgw_video.html?embed=1&v=1
+        title: IMGW – produkty specjalne
+        # Muted autoplay works without this, but fullscreen video needs it
+        # and it costs nothing to declare:
+        allow: fullscreen; autoplay
+        # For a masonry view instead of panel view, uncomment:
+        # aspect_ratio: 115%
+        # For a sections view, size it with the grid instead:
+        # grid_options: { columns: full, rows: 5, min_columns: 4, min_rows: 3 }
